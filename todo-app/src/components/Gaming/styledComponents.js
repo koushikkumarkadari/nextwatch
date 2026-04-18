@@ -16,12 +16,18 @@ export const Container = styled.div`
   min-height:100vh;
   height:auto;
 `;
+export const LoaderContainer = styled.div`
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+`;
 
 export const UnorderedList = styled.ul`
   display:flex;
   flex-wrap:wrap;
   list-style-type: none;
-  padding:40px;
+  padding:0px 40px 0px 40px;
   width:100%;
   overflow-y: auto;
 `
@@ -33,7 +39,12 @@ export const Image = styled.img`
   width:100%;
 `
 export const Text = styled.p`
-  font-size: ${props => (props.$gamingText ? '24px' : '16px')};
+  font-size: ${props => (props.$gamingText ? '24px' : `${props.$icon ? '36px' : '14px'}`)};
   font-weight: ${props => (props.$gamingText ? 'bold' : 'normal')};
-  margin: ${props => (props.$gamingText ? '20px' : '5px')};
+  padding: ${props => (props.$gamingText ? '10px 10px 10px 40px' : `${props.$icon ? '10px' : '0px'}`)};
+  margin:${props => (props.$icon ? '0px 10px 0px 0px' : '0px')};
+  border-radius:${props=>(props.$icon ? '40px' : '0px')};
+  background-color:${props => (props.$icon ? `${props.$light ? '#e2e8f0' : '#383838'}` : `${props.$gamingText? `${props.$light ? '#F4F4F4' : '#7e858e'}` : ''}`)};
+  display:${props => (props.$icon ? 'inline-block' : '')};
+  text-align:${props => (props.$icon ? 'center' : '')};
 `

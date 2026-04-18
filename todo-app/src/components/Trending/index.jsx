@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
+import {LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
@@ -66,9 +66,9 @@ class Trending extends Component {
   )
 
   renderLoadingView = (lightTheme) => (
-    <Container $light={lightTheme} $loader data-testid="loader">
+    <LoaderContainer $light={lightTheme} $loader data-testid="loader">
       <Text>Loading...</Text>
-    </Container>
+    </LoaderContainer>
   )
 
   renderVideos = (lightTheme) => {

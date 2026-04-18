@@ -23,11 +23,20 @@ export const Container = styled.div`
   min-height:${props => (props.$videocontainer ? '100vh' : 'auto')};
   height:auto;
 `;
+export const LoaderContainer = styled.div`
+  display:flex;
+
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+`;
+
 export const UnorderedList = styled.ul`
   list-style-type: none;
   padding:40px;
   width:100%;
   overflow-y: auto;
+
 `
 export const ListItem = styled.li`
   display:flex;

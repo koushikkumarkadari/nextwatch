@@ -33,9 +33,10 @@ export const Image = styled.img`
 `
 export const Button = styled.button`
     width: 80px;
-    height: 40px;
+    height: 30px;
     background-color: transparent;
     border: ${props => props.$profile ? '0px solid transparent' : `1px solid ${props.$light ? '#3b82f6' : '#ffffff'}`};
     color: ${props =>props.$light ? '#3b82f6' : '#ffffff'};
-    border-radius: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 `

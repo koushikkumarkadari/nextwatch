@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
-import { LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
+import {LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 const apiStatusConstants = {
@@ -71,9 +71,9 @@ class Gaming extends Component {
   }
 
   renderLoadingView = (lightTheme) => (
-    <Container $light={lightTheme} $loadingContainer>
+    <LoaderContainer $light={lightTheme}>
       <div>Loading...</div>
-    </Container>
+    </LoaderContainer>
   )
 
   renderFailureView = (lightTheme) => (
@@ -109,7 +109,9 @@ class Gaming extends Component {
               <Container $light={lightTheme} $sideBarAndVideosContainer>
                 <SideBar />
                 <Container $light={lightTheme} $videos>
-                  <Text $gamingText>🎮 Gaming</Text>
+                  <Text $light={lightTheme} $gamingText>
+                    <Text $light={lightTheme} $icon>🎮 </Text>Gaming
+                  </Text>
                   {this.renderAllVideos(lightTheme)}
                 </Container>
               </Container>

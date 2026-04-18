@@ -14,25 +14,22 @@ export const CancelIcon = styled(MdCancel)`
 `
 export const SearchIcon = styled(FaSearch)`
   color: ${props => (props.$light ? 'black' : 'white')};
-  font-size: 20px;
   cursor: pointer;
+  font-weight:100;
 `
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   display:flex;
-  align-items:center;
-  margin-left:20px;
-  margin-top:20px;
-  width:300px;
-
+  width:50%;
+  height:35px;
+  border: ${props => (props.$light ? '1px solid black' : '1px solid white')};
+  margin-top:25px;
+  margin-left:25px;
+  border-radius:3px;
 `
 export const InputContainer = styled.div`
   width:80%;
   background-color: ${props => (props.$light ? 'white' : 'black')};
-  border: ${props => (props.$light ? '1px solid black' : '1px solid white')};
-  width:240px;
-  padding:5px;
-  margin-right:10px;
-  border-radius:10px;
+  border-radius:3px;
 `
 export const BannerContainer = styled.div`
   display:flex;
@@ -59,9 +56,22 @@ export const Container = styled.div`
   height:auto;
   color: ${props => (props.$light ? 'black' : 'white')};
 `;
+export const LoaderContainer = styled.div`
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+  `
+export const TextContainer = styled.div`
+  display:flex;
+  flex-direction:column;
+  padding:10px;
+  background-color: ${props => (props.$light ? '#f9f9f9' : '#0f0f0f')};
+
+`
 export const VideosContainer = styled.div`
   width:78vw;
-  background-color: ${props => (props.$light ? 'white' : 'black')};
+  background-color: ${props => (props.$light ? '#f9f9f9' : '#0f0f0f')};
   overflow-y: auto;
   min-height:100vh;
   height:auto;
@@ -85,30 +95,41 @@ export const Text=styled.p`
   margin:0px;
 `
 export const UnorderedList=styled.ul`
-  height:auto;
   width:100%;
   list-style-type:none;
   padding-left:20px;
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-    overflow-y: auto;
+  overflow-y: auto;
   min-height:100vh;
-  max-height:auto;
+  height:auto;
 `
 export const ListItem=styled.li`
   width:33%;
 `
 export const SearchButton=styled.button`
-  background-color:transparent;
-  border-width:0px;
+    background-color: ${props => (props.$light ? '#f4f4f4' : '#383838')};
+
+  border-width:0px 0px 0px 1px;
   color: ${props => (props.$light ? 'black' : 'white')};
+  height:100%;
+  width:20%;
 `
-export const Button=styled.button``
+export const Button=styled.button`
+  background-color:transparent;
+  border-width:1px;
+  height:40px;
+  width:100px;
+  cursor:pointer;
+`
 export const Input=styled.input`
   border-width:0px;
   background-color:transparent;
-  font-size:16px;
+  font-size:14px;
   outline:none;
   color: ${props => (props.$light ? 'black' : 'white')};
+  width:100%;
+  height:100%;
+  padding-left:10px;
 `

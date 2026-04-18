@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {SideBarContainer,Text,Image, LinkText } from './styledComponents'
+import {SideBarContainer,Container,Text,Image, LinkText } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 class Sidebar extends Component {
@@ -10,13 +10,29 @@ class Sidebar extends Component {
           const {lightTheme} = value
           return (
             <SideBarContainer $main>
-              <SideBarContainer >
-                <LinkText $light={lightTheme} to="/"><Text>Home</Text></LinkText>
-                <LinkText $light={lightTheme} to="/trending"><Text>Trending</Text></LinkText>
-                <LinkText $light={lightTheme} to="/gaming"><Text>Gaming</Text></LinkText>
-                <LinkText $light={lightTheme} to="/saved-videos"><Text>Saved Videos</Text></LinkText>
+              <SideBarContainer>
+                <LinkText exact to="/" activeClassName="active" $light={lightTheme}>
+                  <Container $link $light={lightTheme}>
+                    <Text>Home</Text>
+                  </Container>
+                </LinkText>
+                <LinkText to="/trending" activeClassName="active" $light={lightTheme}>
+                  <Container $link $light={lightTheme}>
+                    <Text>Trending</Text>
+                  </Container>
+                </LinkText>
+                <LinkText to="/gaming" activeClassName="active" $light={lightTheme}>
+                  <Container $link $light={lightTheme}>
+                    <Text>Gaming</Text>
+                  </Container>
+                </LinkText>
+                <LinkText to="/saved-videos" activeClassName="active" $light={lightTheme}>
+                  <Container $link $light={lightTheme}>
+                    <Text>Saved Videos</Text>
+                  </Container>
+                </LinkText>
               </SideBarContainer>
-              <SideBarContainer $light={lightTheme}>
+              <SideBarContainer $bottom $light={lightTheme}>
                 <Text>Contact Us</Text>
                 <SideBarContainer>
                   <Image src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png" alt="facebook logo" />

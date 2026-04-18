@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {SearchButton, LinkText,BannerText,InputContainer,BannerContainer,ChannelContainer,Container, UnorderedList, ListItem, Image, Text,VideosContainer,Button,CancelIcon,SearchContainer,SearchIcon,Input} from './styledComponents'
+import {LoaderContainer,TextContainer,SearchButton, LinkText,BannerText,InputContainer,BannerContainer,ChannelContainer,Container, UnorderedList, ListItem, Image, Text,VideosContainer,Button,CancelIcon,SearchContainer,SearchIcon,Input} from './styledComponents'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
@@ -71,19 +71,19 @@ class Home extends Component {
   )
 
   renderLoadingView = (lightTheme) => (
-    <Container $light={lightTheme} $loader data-testid="loader">
+    <LoaderContainer $light={lightTheme} $loader data-testid="loader">
       <Text>Loading...</Text>
-    </Container>
+    </LoaderContainer>
   )
 
 
   renderVideos = (lightTheme) => {
     const {videoList} = this.state
     return (
-      <Container $light={lightTheme}>
-        <SearchContainer $light={lightTheme}>
+      <VideosContainer $light={lightTheme}>
+        <SearchContainer onSubmit={this.getVideosApiCall} $light={lightTheme}>
           <InputContainer $light={lightTheme}><Input $light={lightTheme} type="search" placeholder="Search" onChange={this.onChangeSearchInput} /></InputContainer>
-          <SearchButton $light={lightTheme} onClick={this.getVideosApiCall} data-testid="searchButton"><SearchIcon $light={lightTheme}/></SearchButton>
+          <SearchButton type="submit" $light={lightTheme} data-testid="searchButton"><SearchIcon $light={lightTheme}/></SearchButton>
         </SearchContainer>
         <UnorderedList>
           {videoList.map(item => (
@@ -92,17 +92,17 @@ class Home extends Component {
                 <Image $thumbnail src={item.thumbnail} />
                 <ChannelContainer>
                   <Image $profilechannel src={item.channel.profileImageUrl} />
-                  <Container $light={lightTheme}>
+                  <TextContainer $light={lightTheme}>
                     <Text>{item.title}</Text>
                     <Text>{item.channel.name}</Text>
                     <Text>{`${item.viewCount} • ${item.publishedAt}`}</Text>
-                  </Container>
+                  </TextContainer>
                 </ChannelContainer>
               </LinkText>
             </ListItem>
           ))}
         </UnorderedList>
-      </Container>
+      </VideosContainer>
     )
   }
 

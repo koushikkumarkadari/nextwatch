@@ -21,6 +21,15 @@ class Login extends Component {
     error: '',
   }
 
+  componentDidMount() {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      const {history} = this.props
+      history.push('/')
+    }
+  }
+
+
   onLogin = async event => {
     event.preventDefault()
     const {username, password} = this.state
