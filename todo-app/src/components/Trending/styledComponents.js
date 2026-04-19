@@ -22,6 +22,10 @@ export const Container = styled.div`
   color: ${props => (props.$light ? 'black' : 'white')};
   min-height:${props => (props.$videocontainer ? '100vh' : 'auto')};
   height:auto;
+
+  @media screen and (max-width:767px){
+      margin:0px;
+  }
 `;
 export const LoaderContainer = styled.div`
   display:flex;

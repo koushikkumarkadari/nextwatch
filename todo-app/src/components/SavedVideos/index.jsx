@@ -3,6 +3,7 @@ import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import {LoveIcon,LinkText,Container, UnorderedList, ListItem, Image, Text} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
+import VerticalSidebar from '../VerticalSidebar'
 
 
 class SavedVideos extends Component {
@@ -10,12 +11,13 @@ class SavedVideos extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {savedVids,lightTheme} = value
+          const {savedVids,lightTheme,sidebarOpen} = value
           return (
             <Container $light={lightTheme}>
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
                 <SideBar />
+                {sidebarOpen && <VerticalSidebar/>}
                 {savedVids.length > 0 && (
                   <Container $light={lightTheme} $videos>
                     <Text $light={lightTheme} $savedVideos><LoveIcon $light={lightTheme}>❤️</LoveIcon>{` Saved Videos`}</Text>
@@ -38,8 +40,8 @@ class SavedVideos extends Component {
                 {savedVids.length === 0 && (
                   <Container $light={lightTheme} $failureView>
                     <Image src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png' alt="no saved videos" />
-                    <Text>No saved videos found</Text>
-                    <Text>You can save your videos while watching them</Text>
+                    <Text $nothing>No saved videos found</Text>
+                    <Text $nothing>You can save your videos while watching them</Text>
                   </Container>
                 )}
               </Container>

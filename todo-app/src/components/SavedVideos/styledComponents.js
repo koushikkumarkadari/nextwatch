@@ -20,17 +20,24 @@ export const Container = styled.div`
   color: ${props => (props.$light ? 'black' : 'white')};
   min-height:${props => (props.$videos || props.$failureView ? '100vh' : 'auto')};
   height:auto;
+  @media screen and (max-width:767px){
+    margin:0px;
+  }
 `
 export const Image = styled.img`
   width:50%;
   padding:10px;
+  @media screen and (max-width:767px){
+    width:100%;
+  } 
 `
 export const Text = styled.p`
   font-size: ${props => (props.$savedVideos ? '24px' : '16px')};
-  font-weight: ${props => (props.$savedVideos ? 'bold' : 'normal')};
+  font-weight: ${props => (props.$savedVideos || props.$nothing ? 'bold' : 'normal')};
   padding: ${props => (props.$savedVideos ? '20px 10px 20px 40px' : '0px')};
   margin:0px;
   background-color:${props => (props.$savedVideos? `${props.$light ? '#F4F4F4' : '#7e858e'}` : '')};
+  text-align:center;
 `
 export const LoveIcon = styled.span`
   padding:10px;

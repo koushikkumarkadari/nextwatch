@@ -15,6 +15,9 @@ export const Container = styled.div`
   color: ${props => (props.$light ? 'black' : 'white')};
   min-height:100vh;
   height:auto;
+  @media screen and (max-width:767px){
+    margin:0px;
+  }
 `;
 export const LoaderContainer = styled.div`
   display:flex;
@@ -36,6 +39,13 @@ export const UnorderedList = styled.ul`
 export const ListItem = styled.li`
   padding:10px;
   width:33%;
+  @media screen and (max-width:575px){
+    width:100%;
+  }
+  @media screen and (min-width:576px) and (max-width:767px){
+    width:50%;
+  }
+  
 `
 export const Image = styled.img`
   width:100%;

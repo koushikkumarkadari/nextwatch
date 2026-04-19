@@ -25,11 +25,19 @@ export const SearchContainer = styled.form`
   margin-top:25px;
   margin-left:25px;
   border-radius:3px;
+
+  @media screen and (max-width:767px){
+    margin:15px;
+    width:90%;
+  }
 `
 export const InputContainer = styled.div`
   width:80%;
   background-color: ${props => (props.$light ? 'white' : 'black')};
   border-radius:3px;
+  @media screen and (max-width: 575px) {
+    width:100%;
+  }
 `
 export const BannerContainer = styled.div`
   display:flex;
@@ -56,10 +64,11 @@ export const Container = styled.div`
   height:auto;
   color: ${props => (props.$light ? 'black' : 'white')};
 
-  @media (max-width: 575px) {
+  @media screen and  (max-width: 575px) {
     flex-direction: ${props => ((props.$main||props.$Banner) ? 'column' : '')};
     justify-content: ${props => ((props.$Banner) ? 'center' : '')};
     align-items: ${props => ((props.$Banner) ? 'center' : '')};
+    margin-left: ${props => (props.$BannerandVideosContainer ? '0vw' : 'auto')};
   }
 `;
 export const LoaderContainer = styled.div`
@@ -81,6 +90,9 @@ export const VideosContainer = styled.div`
   overflow-y: auto;
   min-height:100vh;
   height:auto;
+  @media (max-width: 767px) {
+    width:100%;
+  }
 `
 export const ChannelContainer = styled.div`
   display:flex;
@@ -110,10 +122,14 @@ export const UnorderedList=styled.ul`
   overflow-y: auto;
   min-height:100vh;
   height:auto;
+
+  @media screen and (max-width:575px){
+    padding:10px;
+  }
 `
 export const ListItem=styled.li`
   width:33%;
-  @media (max-width: 575px) {
+  @media screen and (max-width: 575px) {
     width:100%;
   }
 `

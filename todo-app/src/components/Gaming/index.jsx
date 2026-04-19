@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
-
+import VerticalSidebar from '../VerticalSidebar'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import {GameIcon,LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
@@ -102,12 +102,14 @@ class Gaming extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme} = value
+          const {lightTheme,sidebarOpen} = value
           return (
             <Container $light={lightTheme}>
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
                 <SideBar />
+                {sidebarOpen && <VerticalSidebar />}
+
                 <Container $light={lightTheme} $videos>
                   <Text $light={lightTheme} $gamingText>
                     <GameIcon $light={lightTheme} $icon>🎮</GameIcon>{` Gaming`}

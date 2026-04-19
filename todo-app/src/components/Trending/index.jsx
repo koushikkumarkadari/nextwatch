@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { formatDistanceToNow } from 'date-fns'
 import {FireIcon,LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
 import Navbar from '../Navbar'
+import VerticalSidebar from '../VerticalSidebar'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
 
@@ -45,7 +46,7 @@ class Trending extends Component {
           profileImageUrl: item.channel.profile_image_url,
         },
         viewCount: item.view_count,
-        publishedAt: item.published_at,
+        publishedAt:  formatDistanceToNow(new Date(item.published_at), { addSuffix: true }),
       }))
       this.setState({
         videoList: formattedData,
@@ -77,7 +78,7 @@ class Trending extends Component {
     return (
       <UnorderedList $light={lightTheme}>
         {videoList.map(item => {
-          item.publishedAt = formatDistanceToNow(new Date(item.publishedAt), { addSuffix: true })
+          
           return(
           <LinkText to={`/videos/${item.id}`} key={item.id}>
             <ListItem >
@@ -113,12 +114,14 @@ class Trending extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme} = value
+          const {lightTheme,sidebarOpen} = value
           return (
             <Container $light={lightTheme}>
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
                 <SideBar />
+                {sidebarOpen && <VerticalSidebar />}
+                
                 <Container $light={lightTheme} $videocontainer>
                   <Container $light={lightTheme}>
                     <Text $light={lightTheme} $trendingText><FireIcon $light={lightTheme}>🔥</FireIcon>{` Trending`}</Text>

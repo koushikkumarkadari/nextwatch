@@ -4,10 +4,11 @@ export const ContainerBig = styled.div`
   background-color: ${props => (props.$theme ? 'white' : 'black')};
   color: ${props => (props.$theme ? 'black' : 'white')};
   min-height: 100vh;
-  max-height: auto;
+  height: auto;
   display:flex;
   justify-content:center;
   align-items:center;
+  
 `
 
 export const ContainerOne = styled.div`
@@ -15,6 +16,9 @@ export const ContainerOne = styled.div`
   border-radius:20px;
   box-shadow:4px 4px 4px 4px #231f20;
   background-color: ${props => (props.$theme ? 'white' : 'black')};
+  @media screen and (max-width:767px){
+    width:90%;
+  }
 `
 
 export const Container = styled.div`
@@ -58,4 +62,9 @@ export const Input = styled.input`
 
 export const Image = styled.img`
   margin:20px;
+  @media screen and (max-width:767px){
+    width:100%;
+    padding:10px;
+    margin:0px;
+  }
 `

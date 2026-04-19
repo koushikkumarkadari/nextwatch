@@ -5,6 +5,7 @@ import {LoaderContainer,TextContainer,SearchButton, LinkText,BannerText,InputCon
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
+import VerticalSidebar from '../VerticalSidebar'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -138,7 +139,7 @@ class Home extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,banner,closeBanner} = value
+          const {lightTheme,banner,closeBanner,sidebarOpen} = value
 
           const onCloseBanner = () => {
             closeBanner()
@@ -149,6 +150,7 @@ class Home extends Component {
               <Navbar />
               <Container $light={lightTheme} $main>
                   <SideBar />
+                  {sidebarOpen && <VerticalSidebar />}
                   <Container $light={lightTheme} $BannerandVideosContainer>
                     {banner && (
                       <BannerContainer >
