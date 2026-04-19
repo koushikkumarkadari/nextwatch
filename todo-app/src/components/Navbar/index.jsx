@@ -1,23 +1,17 @@
-import {Link, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Component} from 'react'
 
 import Cookies from 'js-cookie'
-
-import {MainContainer,Container, Image, Button,SunIcon,MoonIcon} from './styledComponents'
+import ReactPopUp from '../ReactPopUp'
+import {MainContainer ,Container, Image, Button,SunIcon,MoonIcon} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 class Navbar extends Component {
-  onClickLogout = () => {
-    const {history} = this.props
-    Cookies.remove('jwt_token')
-    history.replace('/login')
-  }
-
   render() {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,changeActiveTheme} = value
+          const {lightTheme,changeActiveTheme,sidebarOpen,toggleSidebar} = value
 
           const toggleTheme = () => {
             changeActiveTheme()
@@ -38,7 +32,7 @@ class Navbar extends Component {
                 <Button $profile>
                   <Image $profile src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png" alt="profile" />
                 </Button>
-                <Button $light={lightTheme} onClick={this.onClickLogout}>Logout</Button>
+                <ReactPopUp/>
               </Container>
             </MainContainer>
         )}}
@@ -46,4 +40,4 @@ class Navbar extends Component {
     )
   } 
 }
-export default withRouter(Navbar)
+export default Navbar

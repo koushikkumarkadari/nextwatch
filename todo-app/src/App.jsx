@@ -10,10 +10,14 @@ import VideoItemDetails from './components/VideoItemDetails'
 import ThemeContext from './context/ThemeContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
+import { LikeIcon } from './components/VideoItemDetails/styledComponents'
 
 class App extends Component {
   state = {
     lightTheme: true,
+    sidebarOpen: false,
+    likedVideos:[],
+    dislikedVideos: [],
     banner:true,
     savedVids: [
       /*{
@@ -85,6 +89,27 @@ class App extends Component {
     ],
   }
 
+  toggleSidebar = () => {
+    this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
+  }
+
+
+  addToLikedVideos= (id) => {
+    this.setState(prevState => ({likedVideos: [...prevState.likedVideos, id]}))
+  }
+
+  addToDislikedVideos= (id) => {
+    this.setState(prevState => ({dislikedVideos: [...prevState.dislikedVideos, id]}))
+  }
+
+  removeFromLikedVideos= (id) => {
+    this.setState(prevState => ({likedVideos: prevState.likedVideos.filter(videoId => videoId !== id)}))
+  }
+
+  removeFromDislikedVideos= (id) => {
+    this.setState(prevState => ({dislikedVideos: prevState.dislikedVideos.filter(videoId => videoId !== id)}))
+  }
+
   changeActiveTheme = () => {
     this.setState(prevState => ({lightTheme: !prevState.lightTheme}))
   }
@@ -104,12 +129,20 @@ class App extends Component {
   }
 
   render() {
-    const {lightTheme,banner, savedVids} = this.state
+    const {lightTheme,banner, savedVids, likedVideos, dislikedVideos,sidebarOpen} = this.state
     return (
       <ThemeContext.Provider
         value={{
           lightTheme,
+          sidebarOpen,
+          toggleSidebar: this.toggleSidebar,
           banner,
+          likedVideos,
+          dislikedVideos,
+          addToLikedVideos: this.addToLikedVideos,
+          addToDislikedVideos: this.addToDislikedVideos,
+          removeFromLikedVideos: this.removeFromLikedVideos,
+          removeFromDislikedVideos: this.removeFromDislikedVideos,
           closeBanner: this.closeBanner,
           changeActiveTheme: this.changeActiveTheme,
           savedVids,

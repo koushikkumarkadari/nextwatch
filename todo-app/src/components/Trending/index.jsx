@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
+import { formatDistanceToNow } from 'date-fns'
+import {FireIcon,LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
@@ -74,19 +75,21 @@ class Trending extends Component {
   renderVideos = (lightTheme) => {
     const {videoList} = this.state
     return (
-      <UnorderedList>
-        {videoList.map(item => (
+      <UnorderedList $light={lightTheme}>
+        {videoList.map(item => {
+          item.publishedAt = formatDistanceToNow(new Date(item.publishedAt), { addSuffix: true })
+          return(
           <LinkText to={`/videos/${item.id}`} key={item.id}>
-            <ListItem>
+            <ListItem >
               <Image src={item.thumbnail} />
-              <Container $light={lightTheme}>
+              <Container $Text $light={lightTheme}>
                 <Text>{item.title}</Text>
                 <Text>{item.channel.name}</Text>
                 <Text>{`${item.viewCount} views • ${item.publishedAt}`}</Text>
               </Container>
             </ListItem>
           </LinkText>
-        ))}
+        )})}
       </UnorderedList>
     )
   }
@@ -118,7 +121,7 @@ class Trending extends Component {
                 <SideBar />
                 <Container $light={lightTheme} $videocontainer>
                   <Container $light={lightTheme}>
-                    <Text $trendingText>🔥 Trending</Text>
+                    <Text $light={lightTheme} $trendingText><FireIcon $light={lightTheme}>🔥</FireIcon>{` Trending`}</Text>
                   </Container>
                   {this.renderAllVideos(lightTheme)}
                 </Container>

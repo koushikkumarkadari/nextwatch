@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
-import {LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
+import {GameIcon,LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 const apiStatusConstants = {
@@ -56,7 +56,7 @@ class Gaming extends Component {
   renderVideos = (lightTheme) => {
     const {videoList} = this.state
     return (
-      <UnorderedList>
+      <UnorderedList $light={lightTheme}>
         {videoList.map(item => (
           <ListItem key={item.id}>
             <LinkText to={`/videos/${item.id}`} $light={lightTheme}>
@@ -110,7 +110,7 @@ class Gaming extends Component {
                 <SideBar />
                 <Container $light={lightTheme} $videos>
                   <Text $light={lightTheme} $gamingText>
-                    <Text $light={lightTheme} $icon>🎮 </Text>Gaming
+                    <GameIcon $light={lightTheme} $icon>🎮</GameIcon>{` Gaming`}
                   </Text>
                   {this.renderAllVideos(lightTheme)}
                 </Container>

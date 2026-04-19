@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {formatDistanceToNow} from 'date-fns'
 import {LoaderContainer,TextContainer,SearchButton, LinkText,BannerText,InputContainer,BannerContainer,ChannelContainer,Container, UnorderedList, ListItem, Image, Text,VideosContainer,Button,CancelIcon,SearchContainer,SearchIcon,Input} from './styledComponents'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
@@ -86,7 +87,8 @@ class Home extends Component {
           <SearchButton type="submit" $light={lightTheme} data-testid="searchButton"><SearchIcon $light={lightTheme}/></SearchButton>
         </SearchContainer>
         <UnorderedList>
-          {videoList.map(item => (
+          {videoList.map(item => {
+            return(
             <ListItem key={item.id}>
               <LinkText $light={lightTheme} to={`/videos/${item.id}`} >
                 <Image $thumbnail src={item.thumbnail} />
@@ -95,12 +97,12 @@ class Home extends Component {
                   <TextContainer $light={lightTheme}>
                     <Text>{item.title}</Text>
                     <Text>{item.channel.name}</Text>
-                    <Text>{`${item.viewCount} • ${item.publishedAt}`}</Text>
+                    <Text>{`${item.viewCount} • ${formatDistanceToNow(new Date(item.publishedAt), { addSuffix: true })}`}</Text>
                   </TextContainer>
                 </ChannelContainer>
               </LinkText>
             </ListItem>
-          ))}
+          )})}
         </UnorderedList>
       </VideosContainer>
     )

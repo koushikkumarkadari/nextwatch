@@ -15,7 +15,7 @@ export const Button = styled.button`
 `
 export const Container = styled.div`
   width:100%;
-  background-color: ${props => (props.$light ? 'white' : 'black')};
+  background-color: ${props =>(props.$Text? (props.$light ? '#f8fafc' : '#181818') : (props.$light ? 'white' : 'black'))};
   display: ${props=> (props.$sideBarAndVideosContainer ? 'flex' : 'block')};
   padding-top:${props => (props.$sideBarAndVideosContainer ? '60px' : 'auto')};
   margin-left: ${props => (props.$videocontainer ? '20vw' : 'auto')};
@@ -25,7 +25,6 @@ export const Container = styled.div`
 `;
 export const LoaderContainer = styled.div`
   display:flex;
-
   justify-content: center;
   align-items: center;
   height:100vh;
@@ -36,7 +35,8 @@ export const UnorderedList = styled.ul`
   padding:40px;
   width:100%;
   overflow-y: auto;
-
+  margin:0px;
+  background-color: ${props => (props.$light ? '#f8fafc' : '#181818')};
 `
 export const ListItem = styled.li`
   display:flex;
@@ -48,7 +48,14 @@ export const Image = styled.img`
 export const Text = styled.p`
   font-size: ${props => (props.$trendingText ? '24px' : '16px')};
   font-weight: ${props => (props.$trendingText ? 'bold' : 'normal')};
-  margin: ${props => (props.$trendingText ? '20px' : '0px')};
-  margin-left:20px;
+  padding: ${props => (props.$trendingText ? '20px 10px 20px 40px' : '0px 0px 0px 10px')};
+  margin:0px;
+  background-color:${props => (props.$trendingText? `${props.$light ? '#F4F4F4' : '#7e858e'}` : '')};
 `
-
+export const FireIcon = styled.span`
+  padding:10px;
+  margin:0px 10px 0px 0px;
+  border-radius:40px;
+  background-color:${props => (props.$light ? '#e2e8f0' : '#383838')};
+  text-align:center;
+`

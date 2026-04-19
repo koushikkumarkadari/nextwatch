@@ -24,6 +24,7 @@ export const Container = styled.div`
 export const Text=styled.p`
   text-decoration: none;
   margin: 0px;
+  font-weight:500;
 `
 
 export const LinkText = styled(NavLink)`

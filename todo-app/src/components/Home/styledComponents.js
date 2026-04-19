@@ -55,6 +55,12 @@ export const Container = styled.div`
   min-height:${props => (props.$loader || props.$failureContainer ? '100vh' : 'auto')};
   height:auto;
   color: ${props => (props.$light ? 'black' : 'white')};
+
+  @media (max-width: 575px) {
+    flex-direction: ${props => ((props.$main||props.$Banner) ? 'column' : '')};
+    justify-content: ${props => ((props.$Banner) ? 'center' : '')};
+    align-items: ${props => ((props.$Banner) ? 'center' : '')};
+  }
 `;
 export const LoaderContainer = styled.div`
   display:flex;
@@ -107,6 +113,9 @@ export const UnorderedList=styled.ul`
 `
 export const ListItem=styled.li`
   width:33%;
+  @media (max-width: 575px) {
+    width:100%;
+  }
 `
 export const SearchButton=styled.button`
     background-color: ${props => (props.$light ? '#f4f4f4' : '#383838')};

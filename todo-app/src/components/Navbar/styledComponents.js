@@ -21,6 +21,7 @@ export const MainContainer = styled.div`
     align-items: center;
     position: fixed;
     width:100%;
+    z-index: 1;
 `
 export const Container = styled.div`
     display:flex;
@@ -32,11 +33,12 @@ export const Image = styled.img`
     height:${props => props.$profile ? '80%' : '40px'};
 `
 export const Button = styled.button`
-    width: 80px;
+    width: 70px;
     height: 30px;
     background-color: transparent;
     border: ${props => props.$profile ? '0px solid transparent' : `1px solid ${props.$light ? '#3b82f6' : '#ffffff'}`};
     color: ${props =>props.$light ? '#3b82f6' : '#ffffff'};
     border-radius: 5px;
     cursor: pointer;
+    padding: 0px;
 `
