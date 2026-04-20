@@ -42,7 +42,9 @@ export const Container = styled.div`
   color: ${props => (props.$light ? 'black' : 'white')};
   padding-top:${props => (props.$sideBarAndVideosContainer ? '60px' : 'auto')};
   margin-left:${props => (props.$videos ? '20vw' : 'auto')};
-
+  @media screen and (max-width:767px){
+    margin:0px;
+  }
 `;
 export const Image = styled.img`
   padding:0px 0px 0px 20px;

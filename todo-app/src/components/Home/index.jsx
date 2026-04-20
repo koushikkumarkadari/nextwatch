@@ -52,7 +52,7 @@ class Home extends Component {
           profileImageUrl: item.channel.profile_image_url,
         },
         viewCount: item.view_count,
-        publishedAt: item.published_at,
+        publishedAt: formatDistanceToNow(new Date(item.published_at), { addSuffix: true }),
       }))
       this.setState({
         videoList: formattedData,
@@ -65,10 +65,10 @@ class Home extends Component {
 
   renderFailureView = (lightTheme) => (
     <Container $light={lightTheme} $failureContainer>
-      <Image src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
-      <Text>Oops! Something Went Wrong</Text>
-      <Text>We are having some trouble to complete your request. Please try again.</Text>
-      <Button onClick={this.getVideosApiCall}>Retry</Button>
+      <Image $failure src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
+      <Text $failText>Oops! Something Went Wrong</Text>
+      <Text $failText>We are having some trouble to complete your request. Please try again.</Text>
+      <Button $retry onClick={this.getVideosApiCall}>Retry</Button>
     </Container>
   )
 
@@ -98,7 +98,7 @@ class Home extends Component {
                   <TextContainer $light={lightTheme}>
                     <Text>{item.title}</Text>
                     <Text>{item.channel.name}</Text>
-                    <Text>{`${item.viewCount} • ${formatDistanceToNow(new Date(item.publishedAt), { addSuffix: true })}`}</Text>
+                    <Text>{`${item.viewCount} • ${item.publishedAt}`}</Text>
                   </TextContainer>
                 </ChannelContainer>
               </LinkText>
@@ -112,10 +112,10 @@ class Home extends Component {
   renderSuccessView = (lightTheme) => {
     const {videoList} = this.state
     return videoList.length > 0 ? this.renderVideos(lightTheme) : (
-      <Container $light={lightTheme} $failureView>
-        <Image src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png' alt="no results" />
-        <Text>No Results Found</Text>
-        <Text>Please try with a different keyword</Text>
+      <Container $light={lightTheme}  $failureContainer>
+        <Image $failure src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png' alt="no results" />
+        <Text $failText>No Results Found</Text>
+        <Text $failText>Please try with a different keyword</Text>
       </Container>
     )
   }

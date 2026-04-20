@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import {FaSun,FaBars,FaMoon } from 'react-icons/fa'
 import { IoIosClose } from "react-icons/io";
+import {Link} from 'react-router-dom'
 
+export const LinkText=styled(Link)`
+  text-decoration: none;
+`
 export const CloseIcon=styled(IoIosClose)`
     color: ${props => props.$light ? '#000000' : '#ffffff'};
     font-size: 44px;

@@ -13,8 +13,11 @@ export const SideBarContainer = styled.div`
   color:${props => (props.$light ? 'black' : 'white')};
   z-index: 1;
   position:${props => (props.$main ? 'fixed' : '')};
+  @media screen and (min-width:576px) and (max-width:767px){
+    width:${props=>(props.$bottom) || (props.$main)?'50%':'auto'};
+  }
   @media screen and (min-width: 768px) {
-    display: ${props => (props.$main ? 'none' : '')};
+    display: none;
   }
 `
 

@@ -50,25 +50,30 @@ export const BannerContainer = styled.div`
   background-position: center;
 `
 export const Container = styled.div`
-  display: ${props => ((props.$main||props.$Banner) ? 'flex' : 'block')};
-  flex-direction: ${props => ((props.$main||props.$Banner) ? 'row' : '')};
-  justify-content: ${props => ((props.$Banner) ? 'space-between' : '')};
+  display: flex;
+  flex-direction: ${props => ((props.$main||props.$Banner) ? 'row' : 'column')};
+  justify-content: ${props => ((props.$Banner) ? 'space-between' : `${(props.$failureContainer)?'center':''}`)};
+  align-items:${props=>((props.$failureContainer?'center':''))};
   width:100%;
   background-color: ${props => (props.$light ? 'white' : 'black')};
   background-size: cover;
   background-position: center;
   padding: ${props => (props.$Banner ? '20px' : '0px')};
   padding-top:${props => (props.$main ? '60px' : 'auto')};
-  margin-left:${props=>(props.$BannerandVideosContainer ? '20vw' : 'auto')};
+  margin-left:${props=>(props.$BannerandVideosContainer ? '20vw' : '0px')};
   min-height:${props => (props.$loader || props.$failureContainer ? '100vh' : 'auto')};
   height:auto;
   color: ${props => (props.$light ? 'black' : 'white')};
 
+  @media screen and (min-width:576px) and (max-width:767px){
+    margin-left:${props=>(props.$BannerandVideosContainer?'0vw':'0px')}
+  }
+
   @media screen and  (max-width: 575px) {
-    flex-direction: ${props => ((props.$main||props.$Banner) ? 'column' : '')};
+    flex-direction: ${props => ((props.$main||props.$Banner||props.$failureContainer||props.$BannerandVideosContainer) ? 'column' : 'row')};
     justify-content: ${props => ((props.$Banner) ? 'center' : '')};
     align-items: ${props => ((props.$Banner) ? 'center' : '')};
-    margin-left: ${props => (props.$BannerandVideosContainer ? '0vw' : 'auto')};
+    margin-left: ${props => (props.$BannerandVideosContainer ? '0vw' : '0px')};
   }
 `;
 export const LoaderContainer = styled.div`
@@ -101,8 +106,11 @@ export const ChannelContainer = styled.div`
 `
 
 export const Image = styled.img`
-  width: ${props => (props.$thumbnail ? '100%' : `${props.$profilechannel ? '40px' : `${props.$bannerLogo ? '140px' : 'auto'}`}`)};
+  width: ${props => (props.$thumbnail ? '100%' : `${props.$profilechannel ? '40px' : `${props.$bannerLogo ? '140px' : `${props.$failure?'50%':'auto'}`}`}`)};
   padding:5px;
+  @media screen and (max-width:575px){
+    padding:${props=>(props.$thumbnail?'0px':'5px')};
+  }
 `
 export const BannerText = styled.p`
   font-size: 16px;
@@ -111,6 +119,7 @@ export const BannerText = styled.p`
 `
 export const Text=styled.p`
   margin:0px;
+  text-align:${props=>(props.$failText?'center':'start')}
 `
 export const UnorderedList=styled.ul`
   width:100%;
@@ -124,11 +133,17 @@ export const UnorderedList=styled.ul`
   height:auto;
 
   @media screen and (max-width:575px){
+    padding:0px;
+  }
+  @media screen and (min-width:576px) and (max-width:767px){
     padding:10px;
   }
 `
 export const ListItem=styled.li`
   width:33%;
+  @media screen and (min-width:576px) and (max-width:767px){
+    width:50%;
+  }
   @media screen and (max-width: 575px) {
     width:100%;
   }
@@ -142,11 +157,13 @@ export const SearchButton=styled.button`
   width:20%;
 `
 export const Button=styled.button`
-  background-color:transparent;
-  border-width:1px;
+  background-color:${props=>(props.$retry?'#4f46e5':'transparent')};
+  border-width:${props=>((props.$retry)?'0px':'1px')};
   height:40px;
   width:100px;
   cursor:pointer;
+  color:${props=>((props.$retry)?'white':'black')};
+  margin:${props=>((props.$retry)?'10px':'0px')}
 `
 export const Input=styled.input`
   border-width:0px;

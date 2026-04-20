@@ -6,6 +6,7 @@ import VideoPlayer from '../VideoPlayer'
 import {formatDistanceToNow}  from 'date-fns'
 import { Container,Text, Image ,Button, LikeIcon,DislikeIcon,UnsavedIcon,SavedIcon,LikedIcon,DislikedIcon} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
+import VerticalSidebar from '../VerticalSidebar'
 
 class VideoItemDetails extends Component {
   state = {theVideo: {channel: {}}}
@@ -57,7 +58,7 @@ class VideoItemDetails extends Component {
     return (
         <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,savedVids,saveVid,unsaveVid,likedVideos,dislikedVideos,addToLikedVideos,addToDislikedVideos,removeFromLikedVideos,removeFromDislikedVideos} = value
+          const {lightTheme,savedVids,saveVid,unsaveVid,likedVideos,dislikedVideos,addToLikedVideos,addToDislikedVideos,removeFromLikedVideos,removeFromDislikedVideos,sidebarOpen} = value
           const saveThisVideo=(theVideo)=>{
             saveVid(theVideo)
           }
@@ -86,6 +87,7 @@ class VideoItemDetails extends Component {
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
                 <SideBar />
+                {sidebarOpen && <VerticalSidebar/>}
                 <Container $light={lightTheme} $videos>
                   <VideoPlayer videoURL={theVideo.videoUrl} />
                   <Text>{theVideo.title}</Text>

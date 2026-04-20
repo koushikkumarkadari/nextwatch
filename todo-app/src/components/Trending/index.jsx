@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import { formatDistanceToNow } from 'date-fns'
-import {FireIcon,LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
+import {ChannelLogo,FireIcon,LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
 import Navbar from '../Navbar'
 import VerticalSidebar from '../VerticalSidebar'
 import SideBar from '../SideBar'
@@ -60,10 +60,10 @@ class Trending extends Component {
 
   renderFailureView = (lightTheme) => (
     <Container $light={lightTheme} $failureContainer>
-      <Image src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
-      <Text>Oops! Something Went Wrong</Text>
-      <Text>We are having some trouble to complete your request. Please try again.</Text>
-      <Button onClick={this.getVideosApiCall}>Retry</Button>
+      <Image $failure src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
+      <Text $failText>Oops! Something Went Wrong</Text>
+      <Text $failText>We are having some trouble to complete your request. Please try again.</Text>
+      <Button $retry onClick={this.getVideosApiCall}>Retry</Button>
     </Container>
   )
 
@@ -83,10 +83,13 @@ class Trending extends Component {
           <LinkText to={`/videos/${item.id}`} key={item.id}>
             <ListItem >
               <Image src={item.thumbnail} />
-              <Container $Text $light={lightTheme}>
-                <Text>{item.title}</Text>
-                <Text>{item.channel.name}</Text>
-                <Text>{`${item.viewCount} views • ${item.publishedAt}`}</Text>
+              <Container $channel $light={lightTheme}>
+                <ChannelLogo alt="logo" src={item.channel.profileImageUrl}/>
+                <Container $Text $light={lightTheme}>
+                  <Text>{item.title}</Text>
+                  <Text>{item.channel.name}</Text>
+                  <Text>{`${item.viewCount} views • ${item.publishedAt}`}</Text>
+                </Container>
               </Container>
             </ListItem>
           </LinkText>

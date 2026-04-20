@@ -14,7 +14,7 @@ class VideoPlayer extends Component {
             src={videoURL}
             controls
             width="100%"
-            height="400px"
+            height="60vh"
           />
         </Container>
       </Container>

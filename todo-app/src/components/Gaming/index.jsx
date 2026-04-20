@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import VerticalSidebar from '../VerticalSidebar'
 import Navbar from '../Navbar'
 import SideBar from '../SideBar'
-import {GameIcon,LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image} from './styledComponents'
+import {GameIcon,LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image,Button} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 const apiStatusConstants = {
@@ -77,11 +77,13 @@ class Gaming extends Component {
   )
 
   renderFailureView = (lightTheme) => (
-    <Container $light={lightTheme} $failureContainer>
-      <Image src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png" alt="failure view" />
-      <Text>Failed to fetch gaming videos</Text>
-    </Container>
-  )
+      <Container $light={lightTheme} $failureContainer>
+        <Image $failure src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
+        <Text $failText>Oops! Something Went Wrong</Text>
+        <Text $failText>We are having some trouble to complete your request. Please try again.</Text>
+        <Button $retry onClick={this.getVideosApiCall}>Retry</Button>
+      </Container>
+    )
 
   renderAllVideos = (lightTheme) => {
     const {apiStatus} = this.state
