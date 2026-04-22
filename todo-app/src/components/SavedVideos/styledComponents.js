@@ -6,6 +6,11 @@ import {Link} from 'react-router-dom'
 export const LinkText = styled(Link)`
   text-decoration: none;
   color: ${props => (props.$light ? 'black' : 'white')};
+  display:flex;
+  justify-content:start;
+  @media screen and (max-width:575px){
+    flex-direction:column;
+  }
 `
 
 export const Container = styled.div`
@@ -15,9 +20,11 @@ export const Container = styled.div`
   align-items: ${props => (props.$failureView && 'center')};
   width:${props => (props.$videos || props.$failureView ? '80vw' : 'auto')};
   padding-top:${props => (props.$sideBarAndVideosContainer ? '60px' : 'auto')};
-  margin-left:${props => (props.$videos || props.$failureView ? '20vw' : 'auto')};
-  background-color: ${props => (props.$Title ||props.$channel ? (props.$light ? '#f8fafc' : '#181818') : (props.$light ? 'white' : 'black'))};
-  color: ${props => (props.$light ? 'black' : 'white')};
+  margin-left:${props => (props.$videos || props.$failureView ? '20vw' : '0px')};
+  background-color: ${props =>
+    props.$Title || props.$channel
+      ? `${props.$light ? '#f8fafc' : '#181818'}`
+      : `${props.$light ? 'white' : 'black'}`};  color: ${props => (props.$light ? 'black' : 'white')};
   min-height:${props => (props.$videos || props.$failureView ? '100vh' : 'auto')};
   height:auto;
   @media screen and (max-width:767px){
@@ -26,9 +33,9 @@ export const Container = styled.div`
   }
 `
 export const Image = styled.img`
-  width:50%;
+  width:40%;
   padding:10px;
-  @media screen and (max-width:767px){
+  @media screen and (max-width:575px){
     width:100%;
   } 
 `
@@ -76,8 +83,5 @@ export const UnorderedList = styled.ul`
   }
 `
 export const ListItem = styled.li`
-  display:flex;
-  @media screen and (max-width:575px){
-    flex-direction:column;
-  }
+  
 `

@@ -1,21 +1,22 @@
 import styled from 'styled-components'
-import {FaSun,FaBars,FaMoon } from 'react-icons/fa'
-import { IoIosClose } from "react-icons/io";
+import {FaSun,FaMoon } from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+
+export const ListItem=styled.li`
+`
+export const UnorderedList=styled.ul`
+    display:flex;
+    align-items:center;
+    margin:0px;
+    padding:10px;
+    list-style-type:none;
+`
 
 export const LinkText=styled(Link)`
   text-decoration: none;
 `
-export const CloseIcon=styled(IoIosClose)`
-    color: ${props => props.$light ? '#000000' : '#ffffff'};
-    font-size: 44px;
-    cursor: pointer;
-`
-export const FaBarsIcon = styled(FaBars)`
-    color: ${props => props.$light ? '#000000' : '#ffffff'};
-    font-size: 24px;
-    cursor: pointer;
-`
+
+
 export const SunIcon = styled(FaSun)`
     color: #000000; 
     font-size: 24px;
@@ -63,21 +64,7 @@ export const ProfileButton = styled.button`
         display: none;
     }
 `
-export const MenuButton = styled.button`
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: 0px solid transparent;
-    cursor: pointer;
-    display: none;
-    padding:0px;
 
-    @media screen and (max-width: 767px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-`
 
 export const Button = styled.button`
     width: 70px;

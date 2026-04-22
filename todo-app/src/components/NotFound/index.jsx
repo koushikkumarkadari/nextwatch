@@ -1,21 +1,17 @@
-import React from 'react';
 import { NotFoundContainer,Image,Text ,Heading} from './styledComponents';
 import  ThemeContext  from '../../context/ThemeContext';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar';
-import VerticalSidebar from '../VerticalSidebar';
 
-const NotFound = () => {
-  return(
+const NotFound = () => (
     <ThemeContext.Consumer>
       {value => {
-        const {lightTheme,sidebarOpen} = value
+        const {lightTheme} = value
         return(
           <NotFoundContainer $main $light={lightTheme}>
             <Navbar />
             <NotFoundContainer $sub1 $light={lightTheme}>
               <Sidebar />
-              {sidebarOpen && <VerticalSidebar/>}
               <NotFoundContainer $sub2 $light={lightTheme}>
                 <Image src={lightTheme ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png" : "https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png"} alt="not found" />
                 <Heading $light={lightTheme}>Page Not Found</Heading>
@@ -28,6 +24,5 @@ const NotFound = () => {
     }
     </ThemeContext.Consumer>
   )
-}
 
 export default NotFound;

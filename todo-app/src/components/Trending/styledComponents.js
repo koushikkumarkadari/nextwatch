@@ -23,8 +23,10 @@ export const Button = styled.button`
 `
 export const Container = styled.div`
   width:100%;
-  background-color: ${props =>(props.$Text||props.$channel? (props.$light ? '#f8fafc' : '#181818') : (props.$light ? 'white' : 'black'))};
-  display: flex;
+background-color: ${props =>
+    props.$Text || props.$channel
+      ? `${props.$light ? '#f8fafc' : '#181818'}`
+      : `${props.$light ? 'white' : 'black'}`};  display: flex;
   flex-direction:${props=> ((props.$sideBarAndVideosContainer) || (props.$channel) ? 'row' : 'column')};
   align-items:${props=>((props.$failureContainer)?'center':'')};
   padding-top:${props => (props.$sideBarAndVideosContainer ? '60px' : 'auto')};

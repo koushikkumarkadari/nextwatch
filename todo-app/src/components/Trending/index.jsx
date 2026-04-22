@@ -3,8 +3,7 @@ import Cookies from 'js-cookie'
 import { formatDistanceToNow } from 'date-fns'
 import {ChannelLogo,FireIcon,LoaderContainer,LinkText,Container, UnorderedList, ListItem, Image, Text,Button} from './styledComponents'
 import Navbar from '../Navbar'
-import VerticalSidebar from '../VerticalSidebar'
-import SideBar from '../SideBar'
+import Sidebar from '../Sidebar'
 import ThemeContext from '../../context/ThemeContext'
 
 const apiStatusConstants = {
@@ -77,12 +76,10 @@ class Trending extends Component {
     const {videoList} = this.state
     return (
       <UnorderedList $light={lightTheme}>
-        {videoList.map(item => {
-          
-          return(
+        {videoList.map(item => (
           <LinkText to={`/videos/${item.id}`} key={item.id}>
             <ListItem >
-              <Image src={item.thumbnail} />
+              <Image alt="video thumbnail" src={item.thumbnail} />
               <Container $channel $light={lightTheme}>
                 <ChannelLogo alt="logo" src={item.channel.profileImageUrl}/>
                 <Container $Text $light={lightTheme}>
@@ -93,7 +90,7 @@ class Trending extends Component {
               </Container>
             </ListItem>
           </LinkText>
-        )})}
+        ))}
       </UnorderedList>
     )
   }
@@ -117,13 +114,12 @@ class Trending extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,sidebarOpen} = value
+          const {lightTheme} = value
           return (
             <Container $light={lightTheme}>
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
-                <SideBar />
-                {sidebarOpen && <VerticalSidebar />}
+                <Sidebar />
                 
                 <Container $light={lightTheme} $videocontainer>
                   <Container $light={lightTheme}>

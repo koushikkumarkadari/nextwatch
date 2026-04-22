@@ -25,7 +25,7 @@ class Login extends Component {
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       const {history} = this.props
-      history.push('/')
+      history.replace('/')
     }
   }
 
@@ -45,7 +45,7 @@ class Login extends Component {
       console.log(data)
       Cookies.set('jwt_token', data.jwt_token, {expires: 1})
       const {history} = this.props
-      history.push('/')
+      history.replace('/')
     } else {
       const data = await response.json()
       console.log(data)

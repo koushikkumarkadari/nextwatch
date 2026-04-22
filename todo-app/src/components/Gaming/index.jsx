@@ -1,9 +1,7 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import VerticalSidebar from '../VerticalSidebar'
 import Navbar from '../Navbar'
-import SideBar from '../SideBar'
+import Sidebar from '../Sidebar'
 import {GameIcon,LoaderContainer, LinkText,ListItem, UnorderedList, Text, Container, Image,Button} from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
@@ -60,7 +58,7 @@ class Gaming extends Component {
         {videoList.map(item => (
           <ListItem key={item.id}>
             <LinkText to={`/videos/${item.id}`} $light={lightTheme}>
-              <Image src={item.thumbnail} />
+              <Image src={item.thumbnail} alt="video thumbnail" />
               <Text>{item.title}</Text>
               <Text>{item.viewCount} views</Text>
             </LinkText>
@@ -71,7 +69,7 @@ class Gaming extends Component {
   }
 
   renderLoadingView = (lightTheme) => (
-    <LoaderContainer $light={lightTheme}>
+    <LoaderContainer data-testid='loader' $light={lightTheme}>
       <div>Loading...</div>
     </LoaderContainer>
   )
@@ -104,14 +102,12 @@ class Gaming extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,sidebarOpen} = value
+          const {lightTheme} = value
           return (
             <Container $light={lightTheme}>
               <Navbar />
               <Container $light={lightTheme} $sideBarAndVideosContainer>
-                <SideBar />
-                {sidebarOpen && <VerticalSidebar />}
-
+                <Sidebar />
                 <Container $light={lightTheme} $videos>
                   <Text $light={lightTheme} $gamingText>
                     <GameIcon $light={lightTheme} $icon>🎮</GameIcon>{` Gaming`}

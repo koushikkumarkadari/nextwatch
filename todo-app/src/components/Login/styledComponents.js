@@ -32,7 +32,7 @@ export const Text = styled.p`
 `
 
 export const CustomButton = styled.button`
-  color:white;
+  color:#ffffff;
   background-color:#3b82f6;
   text-align:center;
   border-radius:10px;

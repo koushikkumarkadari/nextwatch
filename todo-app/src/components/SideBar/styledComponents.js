@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom'
 
+export const ListItem=styled.li`
+`
+export const UnorderedList=styled.ul`
+  display:flex;
+  flex-direction:column;
+  padding:0px;
+  list-style-type:none;
+`
 export const SideBarContainer = styled.div`
   display:${props => (props.$main ? 'flex' : '')};
   height:${props => (props.$main ? '90%' : 'auto')};

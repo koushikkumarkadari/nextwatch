@@ -43,19 +43,20 @@ export const BannerContainer = styled.div`
   display:flex;
   flex-direction:${props => (props.$Banner ? 'column' : 'row')};
   justify-content: space-between;
-  align-items: ${props => (props.$Banner ? 'start' : 'auto')};
+  align-items: start;
   padding: 20px;
   background-image: ${props => (!props.$Banner ? 'url("https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png")' : 'none')};
   background-size: cover;
   background-position: center;
+  width:100%;
 `
 export const Container = styled.div`
   display: flex;
   flex-direction: ${props => ((props.$main||props.$Banner) ? 'row' : 'column')};
   justify-content: ${props => ((props.$Banner) ? 'space-between' : `${(props.$failureContainer)?'center':''}`)};
-  align-items:${props=>((props.$failureContainer?'center':''))};
+  align-items:${props=>((props.$failureContainer?'center':'start'))};
   width:100%;
-  background-color: ${props => (props.$light ? 'white' : 'black')};
+  background-color: ${props => (props.$light ? 'white' : '#181818')};
   background-size: cover;
   background-position: center;
   padding: ${props => (props.$Banner ? '20px' : '0px')};

@@ -3,9 +3,8 @@ import Cookies from 'js-cookie'
 import {formatDistanceToNow} from 'date-fns'
 import {LoaderContainer,TextContainer,SearchButton, LinkText,BannerText,InputContainer,BannerContainer,ChannelContainer,Container, UnorderedList, ListItem, Image, Text,VideosContainer,Button,CancelIcon,SearchContainer,SearchIcon,Input} from './styledComponents'
 import Navbar from '../Navbar'
-import SideBar from '../SideBar'
+import Sidebar from '../Sidebar'
 import ThemeContext from '../../context/ThemeContext'
-import VerticalSidebar from '../VerticalSidebar'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -52,7 +51,7 @@ class Home extends Component {
           profileImageUrl: item.channel.profile_image_url,
         },
         viewCount: item.view_count,
-        publishedAt: formatDistanceToNow(new Date(item.published_at), { addSuffix: true }),
+        publishedAt: item.published_at,
       }))
       this.setState({
         videoList: formattedData,
@@ -66,7 +65,7 @@ class Home extends Component {
   renderFailureView = (lightTheme) => (
     <Container $light={lightTheme} $failureContainer>
       <Image $failure src={lightTheme ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png' : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'} alt="failure view" />
-      <Text $failText>Oops! Something Went Wrong</Text>
+      <Text as="h1" $failText>Oops! Something Went Wrong</Text>
       <Text $failText>We are having some trouble to complete your request. Please try again.</Text>
       <Button $retry onClick={this.getVideosApiCall}>Retry</Button>
     </Container>
@@ -83,18 +82,17 @@ class Home extends Component {
     const {videoList} = this.state
     return (
       <VideosContainer $light={lightTheme}>
-        <SearchContainer onSubmit={this.getVideosApiCall} $light={lightTheme}>
+        <SearchContainer   $light={lightTheme}>
           <InputContainer $light={lightTheme}><Input $light={lightTheme} type="search" placeholder="Search" onChange={this.onChangeSearchInput} /></InputContainer>
-          <SearchButton type="submit" $light={lightTheme} data-testid="searchButton"><SearchIcon $light={lightTheme}/></SearchButton>
+          <SearchButton onClick={this.getVideosApiCall} type="button" $light={lightTheme} data-testid="searchButton"><SearchIcon $light={lightTheme}/></SearchButton>
         </SearchContainer>
         <UnorderedList>
-          {videoList.map(item => {
-            return(
+          {videoList.map(item => (
             <ListItem key={item.id}>
               <LinkText $light={lightTheme} to={`/videos/${item.id}`} >
-                <Image $thumbnail src={item.thumbnail} />
+                <Image alt="video thumbnail" $thumbnail src={item.thumbnail} />
                 <ChannelContainer>
-                  <Image $profilechannel src={item.channel.profileImageUrl} />
+                  <Image alt="channel logo" $profilechannel src={item.channel.profileImageUrl} />
                   <TextContainer $light={lightTheme}>
                     <Text>{item.title}</Text>
                     <Text>{item.channel.name}</Text>
@@ -103,7 +101,7 @@ class Home extends Component {
                 </ChannelContainer>
               </LinkText>
             </ListItem>
-          )})}
+          ))}
         </UnorderedList>
       </VideosContainer>
     )
@@ -113,9 +111,10 @@ class Home extends Component {
     const {videoList} = this.state
     return videoList.length > 0 ? this.renderVideos(lightTheme) : (
       <Container $light={lightTheme}  $failureContainer>
-        <Image $failure src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png' alt="no results" />
-        <Text $failText>No Results Found</Text>
-        <Text $failText>Please try with a different keyword</Text>
+        <Image $failure src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png' alt="no videos" />
+        <Text as="h1" $failText>No Search results found</Text>
+        <Text $failText>Try different key words or remove search filter</Text>
+        <Button type="button" $retry onClick={this.getVideosApiCall}>Retry</Button>
       </Container>
     )
   }
@@ -139,27 +138,21 @@ class Home extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {lightTheme,banner,closeBanner,sidebarOpen} = value
-
-          const onCloseBanner = () => {
-            closeBanner()
-          }
-
+          const {lightTheme,banner,closeBanner} = value
           return (
-            <Container $light={lightTheme}>
+            <Container $light={lightTheme} data-testid="home">
               <Navbar />
               <Container $light={lightTheme} $main>
-                  <SideBar />
-                  {sidebarOpen && <VerticalSidebar />}
+                  <Sidebar />
                   <Container $light={lightTheme} $BannerandVideosContainer>
                     {banner && (
-                      <BannerContainer >
+                      <BannerContainer data-testid="banner">
                         <BannerContainer $Banner>
-                          <Image $bannerLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" alt="home" />
+                          <Image $bannerLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" alt="nxt watch logo" />
                           <BannerText>Buy Nxt Watch Premium prepaid plans with UPI</BannerText>
                           <Button>GET IT NOW</Button>
                         </BannerContainer>
-                        <CancelIcon onClick={closeBanner} />
+                        <Button data-testid="close"  onClick={closeBanner}><CancelIcon  /></Button>
                       </BannerContainer>)}
                     <VideosContainer $light={lightTheme}>{this.renderAllVideos(lightTheme)}</VideosContainer>
                   </Container>

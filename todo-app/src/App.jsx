@@ -10,12 +10,10 @@ import VideoItemDetails from './components/VideoItemDetails'
 import ThemeContext from './context/ThemeContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
-import { LikeIcon } from './components/VideoItemDetails/styledComponents'
 
 class App extends Component {
   state = {
     lightTheme: true,
-    sidebarOpen: false,
     likedVideos:[],
     dislikedVideos: [],
     banner:true,
@@ -89,9 +87,6 @@ class App extends Component {
     ],
   }
 
-  toggleSidebar = () => {
-    this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
-  }
 
 
   addToLikedVideos= (id) => {
@@ -129,13 +124,11 @@ class App extends Component {
   }
 
   render() {
-    const {lightTheme,banner, savedVids, likedVideos, dislikedVideos,sidebarOpen} = this.state
+    const {lightTheme,banner, savedVids, likedVideos, dislikedVideos} = this.state
     return (
       <ThemeContext.Provider
         value={{
           lightTheme,
-          sidebarOpen,
-          toggleSidebar: this.toggleSidebar,
           banner,
           likedVideos,
           dislikedVideos,

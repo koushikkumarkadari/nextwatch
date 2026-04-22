@@ -4,9 +4,6 @@ const ThemeContext = React.createContext({
   lightTheme: true,
   changeActiveTheme: () => {},
 
-  sidebarOpen: false,
-  toggleSidebar: () => {},
-
   likedVideos: [],
   addToLikedVideos: () => {},
   removeFromLikedVideos: () => {},
